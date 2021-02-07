@@ -27,6 +27,10 @@ class Settings(BaseSettings):
     PROJECT_NAME: str
     SENTRY_DSN: Optional[HttpUrl] = None
 
+    TEST_USER_LOGIN = "username"
+    TEST_USER_PASSWORD = "password"
+    TEST_USER_FULL_NAME = "Test User"
+
     @validator("SENTRY_DSN", pre=True)
     def sentry_dsn_can_be_blank(cls, v: str) -> Optional[str]:
         if len(v) == 0:

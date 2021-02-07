@@ -31,6 +31,14 @@ def login_access_token(form_data: OAuth2PasswordRequestForm = Depends()) -> Any:
     }
 
 
+@router.post("/test-token", response_model=schemas.User)
+def test_token(current_user: schemas.User = Depends(deps.get_current_user)) -> Any:
+    """
+    Test access token
+    """
+    return current_user
+
+
 @router.get("/me", response_model=schemas.User)
 def read_user_me(
     current_user: schemas.User = Depends(deps.get_current_user),

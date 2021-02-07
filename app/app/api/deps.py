@@ -26,7 +26,8 @@ def get_current_user(token: str = Depends(reusable_oauth2)) -> schemas.User:
             detail="Could not validate credentials",
         )
 
-    user = {"login": token_data.sub, "full_name": ""}
+    # Проверить пользователя с логином token_data.sub по БД - заглушка
+    user = {"login": token_data.sub, "full_name": settings.TEST_USER_FULL_NAME}
 
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
